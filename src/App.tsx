@@ -1,9 +1,11 @@
-import './App.css';
+import { RouterProvider } from 'react-router-dom';
+import { browserRouter } from '@/routes/browserRouter.route';
 
 function App() {
   return (
     <>
-      <h1 className='animate-in fade-in zoom-in duration-1000'>Hello World</h1>
+      <RouterProvider router={browserRouter} />
+
     </>
   );
 }

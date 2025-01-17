@@ -9,9 +9,14 @@ const initialState: TokenState = {
 
 const updateAccessAndRefreshTokenAsync = createAsyncThunk(
   'token/updateAccessAndRefreshTokenAsync',
-  async ({ accessToken, refreshToken }: { accessToken: string; refreshToken: string }, { dispatch }) => {
-    dispatch(updateField({ key: 'accessToken', value: accessToken }));
-    dispatch(updateField({ key: 'refreshToken', value: refreshToken }));
+  async (
+    {
+      accessToken,
+      refreshToken,
+    }: { accessToken: string; refreshToken: string },
+    { dispatch },
+  ) => {
+    dispatch(setToken({ accessToken, refreshToken }));
     return { accessToken, refreshToken };
   },
 );
@@ -20,6 +25,14 @@ const tokenSlice = createSlice({
   name: 'token',
   initialState,
   reducers: {
+    setToken(
+      state: TokenState,
+      action: PayloadAction<{ accessToken: string; refreshToken: string }>,
+    ): TokenState {
+      state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
+      return state;
+    },
     // Update a specific field in the token
     updateField<K extends keyof TokenState>(
       state: TokenState,
@@ -35,6 +48,6 @@ const tokenSlice = createSlice({
 });
 
 export const selectToken = (state: RootState) => state.token;
-export const { updateField, clearToken } = tokenSlice.actions;
+export const { setToken, updateField, clearToken } = tokenSlice.actions;
 export { updateAccessAndRefreshTokenAsync };
 export default tokenSlice.reducer;

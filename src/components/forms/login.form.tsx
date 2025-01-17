@@ -12,6 +12,8 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useLoginMutation } from '@/api/auth.api';
+import { Link } from 'react-router-dom';
+import { webRoutes } from '@/routes/web.route';
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -81,9 +83,9 @@ const LoginForm: React.FC = () => {
         </Button>
         <div className="text-center text-sm">
           Don&apos;t have an account?{' '}
-          <a href="#" className="underline underline-offset-4">
+          <Link to={webRoutes.signup} className="underline underline-offset-4">
             Sign up
-          </a>
+          </Link>
         </div>
       </form>
     </Form>

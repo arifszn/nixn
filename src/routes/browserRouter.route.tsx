@@ -7,6 +7,7 @@ import Redirect from '@/routes/redirect.route';
 import RequireAuth from '@/routes/RequireAuth.route';
 import BaseLayout from '@/components/layout/base.layout';
 import NotFoundPage from '@/pages/errors/notFound.page';
+import SignupPage from '@/pages/auth/signup.page';
 
 const errorElement = <ErrorPage />;
 
@@ -17,6 +18,10 @@ const authRoutes = {
     {
       path: webRoutes.login,
       element: <LoginPage />,
+    },
+    {
+      path: webRoutes.signup,
+      element: <SignupPage />,
     },
   ],
 };

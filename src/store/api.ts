@@ -16,10 +16,13 @@ export const publicApi = createApi({
 export const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
   if (isRejectedWithValue(action)) {
     console.warn('error!', action);
-    const errorMessage =
-      (action?.payload as { data: { message: string } })?.data?.message ||
-      'An unexpected error occurred';
-    showNotification('Error', NotificationType.ERROR, errorMessage);
+    const payload = action?.payload as { data: { message: string }, status: number };
+    const errorMessage = payload?.data?.message || 'An unexpected error occurred';
+    if (payload?.status === 400) {
+      showNotification('Validation Error', NotificationType.ERROR, 'The values you entered are invalid');
+    } else {
+      showNotification('Error', NotificationType.ERROR, errorMessage);
+    }
   }
 
   return next(action);

@@ -10,7 +10,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { ActionButton } from '@/components/ui/actionButton';
 import { useLoginMutation } from '@/api/auth.api';
 import { Link } from 'react-router-dom';
 import { webRoutes } from '@/routes/web.route';
@@ -64,6 +64,7 @@ const LoginForm: React.FC = () => {
             <FormItem>
               <div className="flex items-center">
                 <FormLabel>Password</FormLabel>
+                {/* todo: add forgot password */}
                 <a
                   href="#"
                   className="ml-auto text-sm underline-offset-4 hover:underline"
@@ -78,9 +79,9 @@ const LoginForm: React.FC = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full" disabled={isLoading}>
+        <ActionButton type="submit" className="w-full" loading={isLoading}>
           Login
-        </Button>
+        </ActionButton>
         <div className="text-center text-sm">
           Don&apos;t have an account?{' '}
           <Link to={webRoutes.signup} className="underline underline-offset-4">

@@ -10,7 +10,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { ActionButton } from '@/components/ui/actionButton';
 import { useSignupMutation } from '@/api/auth.api';
 import { Link } from 'react-router-dom';
 import { webRoutes } from '@/routes/web.route';
@@ -115,9 +115,9 @@ const SignupForm: React.FC = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full" disabled={isLoading}>
+        <ActionButton type="submit" className="w-full" loading={isLoading}>
           Sign Up
-        </Button>
+        </ActionButton>
         <div className="text-center text-sm">
           Already have an account?{' '}
           <Link to={webRoutes.login} className="underline underline-offset-4">

@@ -3,7 +3,7 @@ import { webRoutes } from '@/routes/web.route';
 import ErrorPage from '@/pages/errors/error.page';
 import AuthLayout from '@/components/layout/auth.layout';
 import LoginPage from '@/pages/auth/login.page';
-import Redirect from '@/routes/redirect.route';
+import Redirect from '@/components/common/redirect.common';
 import RequireAuth from '@/routes/RequireAuth.route';
 import BaseLayout from '@/components/layout/base.layout';
 import NotFoundPage from '@/pages/errors/notFound.page';

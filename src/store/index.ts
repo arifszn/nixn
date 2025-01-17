@@ -11,6 +11,8 @@ import {
 import storage from 'redux-persist/lib/storage';
 import userSlice from '@/store/slices/user.slice';
 import tokenSlice from '@/store/slices/token.slice';
+import { publicApi, rtkQueryErrorLogger } from '@/store/api';
+import { setupListeners } from '@reduxjs/toolkit/query';
 
 const persistConfig = {
   key: 'root',
@@ -21,6 +23,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userSlice,
   token: tokenSlice,
+  publicApi: publicApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -33,9 +36,10 @@ export const makeStore = () => {
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
-      }),
+      }).concat(publicApi.middleware, rtkQueryErrorLogger),
     devTools: process.env.NODE_ENV !== 'production',
   });
+  setupListeners(store.dispatch);
 
   return store;
 };

@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { useLoginMutation } from '@/api/auth.api';
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -20,6 +21,7 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 const LoginForm: React.FC = () => {
+  const [login, { isLoading }] = useLoginMutation();
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -29,7 +31,7 @@ const LoginForm: React.FC = () => {
   });
 
   const onSubmit = (values: LoginFormValues) => {
-    console.log('Form Values:', values);
+    login(values);
   };
 
   return (
@@ -74,7 +76,7 @@ const LoginForm: React.FC = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full" disabled={isLoading}>
           Login
         </Button>
         <div className="text-center text-sm">

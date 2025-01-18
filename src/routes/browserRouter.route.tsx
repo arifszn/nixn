@@ -9,8 +9,16 @@ import BaseLayout from '@/components/layout/base.layout';
 import NotFoundPage from '@/pages/errors/notFound.page';
 import SignupPage from '@/pages/auth/signup.page';
 import { RouteHandle } from '@/interfaces/route.interface';
+import loadable from '@loadable/component';
+import Progressbar from '@/components/progressbar';
 
 const errorElement = <ErrorPage />;
+const fallbackElement = <Progressbar />;
+
+const DashboardPage = loadable(() => import('@/pages/dashboard.page'), {
+  fallback: fallbackElement,
+});
+
 
 const authRoutes: RouteObject = {
   element: <AuthLayout />,
@@ -37,16 +45,7 @@ const protectedRoutes: RouteObject = {
   children: [
     {
       path: webRoutes.dashboard,
-      element: (
-        <>
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-          </div>
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
-        </>
-      ),
+      element: <DashboardPage />,
       handle: { title: 'Dashboard' } as RouteHandle,
     },
     {

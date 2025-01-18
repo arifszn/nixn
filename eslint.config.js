@@ -7,12 +7,6 @@ import pluginReact from 'eslint-plugin-react';
 export default [
   {
     files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
-    ignores: ['**/dist/**', '**/build/**', '**/node_modules/**'],
-    settings: {
-      react: {
-        version: 'detect',
-      },
-    },
   },
   { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
   pluginJs.configs.recommended,
@@ -22,5 +16,13 @@ export default [
     rules: {
       'react/react-in-jsx-scope': 'off',
     },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+  },
+  {
+    ignores: ['**/dist/**', '**/build/**', '**/node_modules/**'],
   },
 ];

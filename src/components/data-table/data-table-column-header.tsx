@@ -17,11 +17,11 @@ interface DataTableColumnHeaderProps<TData, TValue>
   title: string
 }
 
-const DataTableColumnHeader = <TData, TValue> ({
+export function DataTableColumnHeader<TData, TValue>({
   column,
   title,
   className,
-}: DataTableColumnHeaderProps<TData, TValue>) => {
+}: DataTableColumnHeaderProps<TData, TValue>) {
   if (!column.getCanSort()) {
     return <div className={cn(className)}>{title}</div>
   }
@@ -64,5 +64,3 @@ const DataTableColumnHeader = <TData, TValue> ({
     </div>
   )
 }
-
-export default DataTableColumnHeader;

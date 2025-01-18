@@ -4,9 +4,9 @@ import ErrorPage from '@/pages/errors/error.page';
 import AuthLayout from '@/components/layout/auth.layout';
 import LoginPage from '@/pages/auth/login.page';
 import Redirect from '@/components/common/redirect.common';
-import RequireAuth from '@/routes/RequireAuth.route';
+import RequireAuth from '@/routes/require-auth.route';
 import BaseLayout from '@/components/layout/base.layout';
-import NotFoundPage from '@/pages/errors/notFound.page';
+import NotFoundPage from '@/pages/errors/not-found.page';
 import SignupPage from '@/pages/auth/signup.page';
 import { RouteHandle } from '@/interfaces/route.interface';
 import loadable from '@loadable/component';
@@ -19,7 +19,7 @@ const DashboardPage = loadable(() => import('@/pages/dashboard.page'), {
   fallback: fallbackElement,
 });
 
-const UserListPage = loadable(() => import('@/pages/userList.page'), {
+const UserListPage = loadable(() => import('@/pages/user-list.page'), {
   fallback: fallbackElement,
 });
 

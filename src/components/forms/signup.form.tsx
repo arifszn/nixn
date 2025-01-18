@@ -10,7 +10,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { ActionButton } from '@/components/ui/actionButton';
+import { ActionButton } from '@/components/ui/action-button';
 import { useSignupMutation } from '@/api/auth.api';
 import { Link, useNavigate } from 'react-router-dom';
 import { webRoutes } from '@/routes/web.route';

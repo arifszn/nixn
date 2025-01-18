@@ -6,7 +6,7 @@ import '@/index.css'
 import App from '@/App.tsx'
 import { persistStore } from 'redux-persist';
 import { makeStore } from '@/store';
-import AppLoader from '@/components/loader/appLoader.loader';
+import AppLoader from '@/components/loader/app-loader.loader';
 
 const store = makeStore();
 const persistor = persistStore(store);

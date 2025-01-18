@@ -1,4 +1,4 @@
-import { LoggedInUser } from "./loggedInUser.interface";
+import { LoggedInUser } from "./logged-in-user.interface";
 
 export interface User extends LoggedInUser {
   age: number;

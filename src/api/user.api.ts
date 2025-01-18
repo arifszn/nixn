@@ -1,7 +1,7 @@
 import { privateApi } from "@/store/api";
 import { apiRoutes } from "../routes/api.route";
 import { User } from "../interfaces/user.interface";
-import { RTK_QUERY_TAG } from "../constants/rtkTags.constant";
+import { RTK_QUERY_TAG } from "../constants/rtk-tags.constant";
 
 export const userApi = privateApi.injectEndpoints({
   endpoints: (builder) => ({

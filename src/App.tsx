@@ -1,5 +1,5 @@
 import { RouterProvider } from 'react-router-dom';
-import { browserRouter } from '@/routes/browserRouter.route';
+import { browserRouter } from '@/routes/browser-router.route';
 import { Toaster } from '@/components/ui/sonner';
 import 'unfonts.css';
 

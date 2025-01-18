@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { webRoutes } from '@/routes/web.route';
 import { TriangleAlert } from 'lucide-react';
-import PageTitle from '@/components/common/pageTitle.common';
+import PageTitle from '@/components/common/page-title.common';
 import { APP_NAME } from '@/constants/config.constant';
 
 const NotFoundPage: React.FC = () => {

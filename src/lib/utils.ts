@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { NotificationType } from "@/enums/notificationType.enum";
+import { NotificationType } from "@/enums/notification-type.enum";
 import { toast } from "sonner"
 
 export function cn(...inputs: ClassValue[]) {

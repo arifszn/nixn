@@ -2,10 +2,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { API_BASE_URL } from '@/constants/config.constant';
 import { RootState } from '@/store';
 import { showNotification } from '@/lib/utils';
-import { NotificationType } from '@/enums/notificationType.enum';
+import { NotificationType } from '@/enums/notification-type.enum';
 import { clearToken, setToken } from '@/store/slices/token.slice';
 import { isRejectedWithValue, Middleware } from '@reduxjs/toolkit';
-import { RTK_QUERY_TAGS_LIST } from '@/constants/rtkTags.constant';
+import { RTK_QUERY_TAGS_LIST } from '@/constants/rtk-tags.constant';
 
 const privateBaseQuery = fetchBaseQuery({
   baseUrl: API_BASE_URL,

@@ -1,6 +1,6 @@
 import { CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import SignupForm from '@/components/forms/signup.form';
-import PageTitle from '@/components/common/pageTitle.common';
+import PageTitle from '@/components/common/page-title.common';
 import { APP_NAME } from '@/constants/config.constant';
 
 const SignupPage: React.FC = () => {

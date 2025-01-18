@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '@/store';
-import { LoggedInUser } from '@/interfaces/loggedInUser.interface';
+import { LoggedInUser } from '@/interfaces/logged-in-user.interface';
 
 const initialState: LoggedInUser = {
   firstName: '',

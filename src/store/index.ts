@@ -9,7 +9,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import loggedInUserSlice from '@/store/slices/loggedInUser.slice';
+import loggedInUserSlice from '@/store/slices/logged-in-user.slice';
 import tokenSlice from '@/store/slices/token.slice';
 import { privateApi, publicApi, rtkQueryErrorLogger } from '@/store/api';
 import { setupListeners } from '@reduxjs/toolkit/query';

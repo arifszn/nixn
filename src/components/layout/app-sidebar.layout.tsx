@@ -21,7 +21,7 @@ import {
   SidebarRail,
 } from '@/components/ui/sidebar';
 import { useAppSelector } from '@/hooks/redux.hook';
-import { selectLoggedInUser } from '@/store/slices/loggedInUser.slice';
+import { selectLoggedInUser } from '@/store/slices/logged-in-user.slice';
 import { webRoutes } from '@/routes/web.route';
 
 const data = {

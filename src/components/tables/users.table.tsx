@@ -38,7 +38,7 @@ import { useGetUsersQuery } from "@/api/user.api"
 import DataTableColumnHeader from "@/components/ui/data-table/column-header"
 import DataTablePagination from "@/components/ui/data-table/pagination"
 import DataTableViewOptions from "@/components/ui/data-table/view-options"
-import AppLoader from "../loader/appLoader.loader"
+import AppLoader from "@/components/loader/app-loader.loader"
 
 export const columns: ColumnDef<User>[] = [
   {

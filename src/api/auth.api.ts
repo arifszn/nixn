@@ -2,8 +2,8 @@ import { publicApi } from "@/store/api";
 import { apiRoutes } from "@/routes/api.route";
 import { Token } from "@/interfaces/token.interface";
 import { setToken } from "@/store/slices/token.slice";
-import { LoggedInUser } from "@/interfaces/loggedInUser.interface";
-import { setLoggedInUser } from "@/store/slices/loggedInUser.slice";
+import { LoggedInUser } from "@/interfaces/logged-in-user.interface";
+import { setLoggedInUser } from "@/store/slices/logged-in-user.slice";
 
 export const authApi = publicApi.injectEndpoints({
   endpoints: (builder) => ({

@@ -5,6 +5,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/auth.hook';
 import { webRoutes } from '@/routes/web.route';
 import { useEffect } from 'react';
+import { APP_NAME } from '@/constants/config.constant';
 
 const AuthLayout = () => {
   const { isAuthenticated } = useAuth();
@@ -25,7 +26,7 @@ const AuthLayout = () => {
           <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
             <GalleryVerticalEnd className="size-4" />
           </div>
-          {import.meta.env.VITE_APP_NAME}
+          {APP_NAME}
         </a>
         <div className={cn('flex flex-col gap-6')}>
           <Card>

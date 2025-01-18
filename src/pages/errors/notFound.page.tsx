@@ -3,11 +3,12 @@ import { Button } from '@/components/ui/button';
 import { webRoutes } from '@/routes/web.route';
 import { TriangleAlert } from 'lucide-react';
 import PageTitle from '@/components/common/pageTitle.common';
+import { APP_NAME } from '@/constants/config.constant';
 
 const NotFoundPage: React.FC = () => {
   return (
     <>
-      <PageTitle title={`${import.meta.env.VITE_APP_NAME} | Not Found`} />
+      <PageTitle title={`${APP_NAME} | Not Found`} />
       <div className="flex min-h-screen flex-col items-center justify-center bg-background">
         <div className="text-center">
           <div className="flex justify-center">

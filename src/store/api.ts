@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { API_BASE_URL } from '@/constants/root.constant';
+import { API_BASE_URL } from '@/constants/config.constant';
 import { isRejectedWithValue } from '@reduxjs/toolkit';
 import { Middleware } from '@reduxjs/toolkit';
 import { NotificationType } from '../enums/notificationType.enum';

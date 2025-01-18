@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 import { webRoutes } from '@/routes/web.route';
 
 const loginSchema = z.object({
-  email: z.string().email('Invalid email address'),
+  username: z.string().min(3, 'Username must be at least 3 characters'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
@@ -27,7 +27,7 @@ const LoginForm: React.FC = () => {
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
   });
@@ -41,16 +41,16 @@ const LoginForm: React.FC = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-6">
         <FormField
           control={form.control}
-          name="email"
+          name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Username</FormLabel>
               <FormControl>
                 <Input
                   {...field}
-                  id="email"
+                  id="username"
                   type="text"
-                  placeholder="m@example.com"
+                  placeholder="username"
                 />
               </FormControl>
               <FormMessage />

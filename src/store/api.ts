@@ -17,11 +17,11 @@ export const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
   if (isRejectedWithValue(action)) {
     console.warn('error!', action);
     const payload = action?.payload as { data: { message: string }, status: number };
-    const errorMessage = payload?.data?.message || 'An unexpected error occurred';
+    const errorMessage = payload?.data?.message;
     if (payload?.status === 400) {
-      showNotification('Validation Error', NotificationType.ERROR, 'The values you entered are invalid');
+      showNotification('Invalid Input', NotificationType.ERROR, errorMessage || 'The values you entered are invalid');
     } else {
-      showNotification('Error', NotificationType.ERROR, errorMessage);
+      showNotification('Error', NotificationType.ERROR, errorMessage || 'An unexpected error occurred');
     }
   }
 

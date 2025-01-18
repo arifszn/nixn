@@ -12,12 +12,12 @@ import {
 import { Input } from '@/components/ui/input';
 import { ActionButton } from '@/components/ui/actionButton';
 import { useSignupMutation } from '@/api/auth.api';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { webRoutes } from '@/routes/web.route';
 
 const signupSchema = z.object({
   name: z.string().min(1, 'Name is required'),
-  email: z.string().email('Invalid email address'),
+  username: z.string().min(3, 'Username must be at least 3 characters'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
   confirmPassword: z
     .string()
@@ -30,19 +30,21 @@ const signupSchema = z.object({
 type SignupFormValues = z.infer<typeof signupSchema>;
 
 const SignupForm: React.FC = () => {
+  const navigate = useNavigate();
   const [signup, { isLoading }] = useSignupMutation();
   const form = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
       name: '',
-      email: '',
+      username: '',
       password: '',
       confirmPassword: '',
     },
   });
 
-  const onSubmit = (values: SignupFormValues) => {
-    signup(values);
+  const onSubmit = async (values: SignupFormValues) => {
+    await signup(values).unwrap();
+    navigate(webRoutes.login);
   };
 
   return (
@@ -63,16 +65,16 @@ const SignupForm: React.FC = () => {
         />
         <FormField
           control={form.control}
-          name="email"
+          name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Username</FormLabel>
               <FormControl>
                 <Input
                   {...field}
-                  id="email"
+                  id="username"
                   type="text"
-                  placeholder="m@example.com"
+                  placeholder="username"
                 />
               </FormControl>
               <FormMessage />

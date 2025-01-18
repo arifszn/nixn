@@ -14,8 +14,8 @@ export const authApi = publicApi.injectEndpoints({
       onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
         const { data } = await queryFulfilled;
         const token: TokenState = {
-          accessToken: data.access_token,
-          refreshToken: data.refresh_token,
+          accessToken: data.accessToken,
+          refreshToken: data.refreshToken,
         };
         dispatch(setToken(token));
       },
@@ -26,14 +26,6 @@ export const authApi = publicApi.injectEndpoints({
         method: 'POST',
         body: data,
       }),
-      onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
-        const { data } = await queryFulfilled;
-        const token: TokenState = {
-          accessToken: data.access_token,
-          refreshToken: data.refresh_token,
-        };
-        dispatch(setToken(token));
-      },
     }),
   }),
 });

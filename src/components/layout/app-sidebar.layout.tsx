@@ -21,7 +21,7 @@ import {
   SidebarRail,
 } from '@/components/ui/sidebar';
 import { useAppSelector } from '@/hooks/redux.hook';
-import { selectUser } from '@/store/slices/user.slice';
+import { selectLoggedInUser } from '@/store/slices/loggedInUser.slice';
 import { webRoutes } from '@/routes/web.route';
 
 const data = {
@@ -115,7 +115,7 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const user = useAppSelector(selectUser);
+  const user = useAppSelector(selectLoggedInUser);
 
   return (
     <Sidebar collapsible="icon" {...props}>

@@ -1,9 +1,9 @@
 import { publicApi } from "@/store/api";
 import { apiRoutes } from "@/routes/api.route";
-import { TokenState } from "@/interfaces/tokenState.interface";
+import { Token } from "@/interfaces/token.interface";
 import { setToken } from "@/store/slices/token.slice";
-import { UserState } from "@/interfaces/userState.interface";
-import { setUser } from "@/store/slices/user.slice";
+import { LoggedInUser } from "@/interfaces/loggedInUser.interface";
+import { setLoggedInUser } from "@/store/slices/loggedInUser.slice";
 
 export const authApi = publicApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -15,11 +15,11 @@ export const authApi = publicApi.injectEndpoints({
       }),
       onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
         const { data } = await queryFulfilled;
-        const token: TokenState = {
+        const token: Token = {
           accessToken: data.accessToken,
           refreshToken: data.refreshToken,
         };
-        const user: UserState = {
+        const user: LoggedInUser = {
           id: data.id,
           username: data.username,
           email: data.email,
@@ -28,7 +28,7 @@ export const authApi = publicApi.injectEndpoints({
           lastName: data.lastName,
         };
         dispatch(setToken(token));
-        dispatch(setUser(user));
+        dispatch(setLoggedInUser(user));
       },
     }),
     signup: builder.mutation({

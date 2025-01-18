@@ -1,4 +1,4 @@
-export interface UserState {
+export interface LoggedInUser {
   email: string;
   avatar: string;
   id: number;

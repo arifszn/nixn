@@ -31,21 +31,21 @@ import {
 } from "@/components/ui/sidebar"
 import { useAppDispatch } from "@/hooks/redux.hook"
 import { clearToken } from "@/store/slices/token.slice"
-import { clearUser } from "@/store/slices/user.slice"
-import { UserState } from "@/interfaces/userState.interface"
+import { clearLoggedInUser } from "@/store/slices/loggedInUser.slice"
+import { LoggedInUser } from "@/interfaces/loggedInUser.interface"
 import { nameInitials } from "../../lib/utils"
 
 export function NavUser({
   user,
 }: {
-  user: UserState
+  user: LoggedInUser
 }) {
   const { isMobile } = useSidebar();
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
     dispatch(clearToken());
-    dispatch(clearUser());
+    dispatch(clearLoggedInUser());
   }
 
   return (

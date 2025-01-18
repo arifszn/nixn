@@ -9,7 +9,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import userSlice from '@/store/slices/user.slice';
+import loggedInUserSlice from '@/store/slices/loggedInUser.slice';
 import tokenSlice from '@/store/slices/token.slice';
 import { publicApi, rtkQueryErrorLogger } from '@/store/api';
 import { setupListeners } from '@reduxjs/toolkit/query';
@@ -21,7 +21,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  user: userSlice,
+  loggedInUser: loggedInUserSlice,
   token: tokenSlice,
   publicApi: publicApi.reducer,
 });

@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '@/store';
-import { TokenState } from '@/interfaces/tokenState.interface';
+import { Token } from '@/interfaces/token.interface';
 
-const initialState: TokenState = {
+const initialState: Token = {
   accessToken: '',
   refreshToken: '',
 };
@@ -26,22 +26,22 @@ const tokenSlice = createSlice({
   initialState,
   reducers: {
     setToken(
-      state: TokenState,
+      state: Token,
       action: PayloadAction<{ accessToken: string; refreshToken: string }>,
-    ): TokenState {
+    ): Token {
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
       return state;
     },
     // Update a specific field in the token
-    updateField<K extends keyof TokenState>(
-      state: TokenState,
-      action: PayloadAction<{ key: K; value: TokenState[K] }>,
-    ): TokenState {
+    updateField<K extends keyof Token>(
+      state: Token,
+      action: PayloadAction<{ key: K; value: Token[K] }>,
+    ): Token {
       state[action.payload.key] = action.payload.value;
       return state;
     },
-    clearToken(state: TokenState): TokenState {
+    clearToken(state: Token): Token {
       return { ...state, accessToken: '', refreshToken: '' };
     },
   },

@@ -19,6 +19,9 @@ const DashboardPage = loadable(() => import('@/pages/dashboard.page'), {
   fallback: fallbackElement,
 });
 
+const UserListPage = loadable(() => import('@/pages/userList.page'), {
+  fallback: fallbackElement,
+});
 
 const authRoutes: RouteObject = {
   element: <AuthLayout />,
@@ -50,7 +53,7 @@ const protectedRoutes: RouteObject = {
     },
     {
       path: webRoutes.users,
-      element: <div>Users</div>,
+      element: <UserListPage />,
       handle: {
         title: 'Users',
       } as RouteHandle,

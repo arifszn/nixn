@@ -3,7 +3,12 @@ import { RootState } from '@/store';
 import { UserState } from '@/interfaces/userState.interface';
 
 const initialState: UserState = {
-  name: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  avatar: '',
+  id: 0,
+  username: '',
 };
 
 const updateUserFieldAsync = createAsyncThunk(

@@ -1,140 +1,122 @@
-import * as React from "react"
+import * as React from 'react';
 import {
   BookOpen,
-  Bot,
   Frame,
   Map,
   PieChart,
   Settings2,
-  SquareTerminal,
-} from "lucide-react"
+  ShoppingCart,
+  UsersRound,
+} from 'lucide-react';
 
-import { NavMain } from "@/components/layout/nav-main.layout"
-import { NavProjects } from "@/components/layout/nav-projects.layout"
-import { NavUser } from "@/components/layout/nav-user.layout"
-import { TeamSwitcher } from "@/components/layout/team-switcher.layout"
+import { NavMain } from '@/components/layout/nav-main.layout';
+import { NavProjects } from '@/components/layout/nav-projects.layout';
+import { NavUser } from '@/components/layout/nav-user.layout';
+import { TeamSwitcher } from '@/components/layout/team-switcher.layout';
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from '@/components/ui/sidebar';
+import { useAppSelector } from '@/hooks/redux.hook';
+import { selectUser } from '@/store/slices/user.slice';
+import { webRoutes } from '@/routes/web.route';
 
-// This is sample data.
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   navMain: [
     {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
+      title: 'Users',
+      url: '#',
+      icon: UsersRound,
       items: [
         {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
+          title: 'All Users',
+          url: webRoutes.users,
         },
       ],
     },
     {
-      title: "Models",
-      url: "#",
-      icon: Bot,
+      title: 'Products',
+      url: '#',
+      icon: ShoppingCart,
       items: [
         {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
+          title: 'All Products',
+          url: webRoutes.products,
         },
       ],
     },
     {
-      title: "Documentation",
-      url: "#",
+      title: 'Documentation',
+      url: '#',
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
-          url: "#",
+          title: 'Introduction',
+          url: '#',
         },
         {
-          title: "Get Started",
-          url: "#",
+          title: 'Get Started',
+          url: '#',
         },
         {
-          title: "Tutorials",
-          url: "#",
+          title: 'Tutorials',
+          url: '#',
         },
         {
-          title: "Changelog",
-          url: "#",
+          title: 'Changelog',
+          url: '#',
         },
       ],
     },
     {
-      title: "Settings",
-      url: "#",
+      title: 'Settings',
+      url: '#',
       icon: Settings2,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: 'General',
+          url: '#',
         },
         {
-          title: "Team",
-          url: "#",
+          title: 'Team',
+          url: '#',
         },
         {
-          title: "Billing",
-          url: "#",
+          title: 'Billing',
+          url: '#',
         },
         {
-          title: "Limits",
-          url: "#",
+          title: 'Limits',
+          url: '#',
         },
       ],
     },
   ],
   projects: [
     {
-      name: "Design Engineering",
-      url: "#",
+      name: 'Design Engineering',
+      url: '#',
       icon: Frame,
     },
     {
-      name: "Sales & Marketing",
-      url: "#",
+      name: 'Sales & Marketing',
+      url: '#',
       icon: PieChart,
     },
     {
-      name: "Travel",
-      url: "#",
+      name: 'Travel',
+      url: '#',
       icon: Map,
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const user = useAppSelector(selectUser);
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -145,9 +127,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

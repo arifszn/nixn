@@ -16,3 +16,10 @@ export const showNotification = (
     description: description,
   });
 };
+
+
+export const nameInitials = (firstName: string, lastName: string) => {
+  const firstNameInitials = firstName ? firstName.charAt(0) : 'X';
+  const lastNameInitials = lastName ? lastName.charAt(0) : '';
+  return firstNameInitials + lastNameInitials;
+};

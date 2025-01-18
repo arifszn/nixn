@@ -74,7 +74,7 @@ const SignupForm: React.FC = () => {
                   {...field}
                   id="username"
                   type="text"
-                  placeholder="username"
+                  placeholder="Your Username"
                 />
               </FormControl>
               <FormMessage />

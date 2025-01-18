@@ -50,7 +50,7 @@ const LoginForm: React.FC = () => {
                   {...field}
                   id="username"
                   type="text"
-                  placeholder="username"
+                  placeholder="Your Username"
                 />
               </FormControl>
               <FormMessage />
@@ -64,7 +64,6 @@ const LoginForm: React.FC = () => {
             <FormItem>
               <div className="flex items-center">
                 <FormLabel>Password</FormLabel>
-                {/* todo: add forgot password */}
                 <a
                   href="#"
                   className="ml-auto text-sm underline-offset-4 hover:underline"

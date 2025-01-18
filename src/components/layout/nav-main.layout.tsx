@@ -17,6 +17,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
+import { Link, useLocation } from "react-router-dom"
 
 export function NavMain({
   items,
@@ -25,13 +26,14 @@ export function NavMain({
     title: string
     url: string
     icon?: LucideIcon
-    isActive?: boolean
     items?: {
       title: string
       url: string
     }[]
   }[]
 }) {
+  const location = useLocation();
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
@@ -40,7 +42,7 @@ export function NavMain({
           <Collapsible
             key={item.title}
             asChild
-            defaultOpen={item.isActive}
+            defaultOpen={item?.items?.some(item => item.url === location.pathname)}
             className="group/collapsible"
           >
             <SidebarMenuItem>
@@ -56,9 +58,9 @@ export function NavMain({
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
+                        <Link to={subItem.url}>
                           <span>{subItem.title}</span>
-                        </a>
+                        </Link>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   ))}

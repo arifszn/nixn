@@ -36,9 +36,9 @@ const BaseLayout: React.FC = () => {
               <Breadcrumb>
                 <BreadcrumbList>
                   <BreadcrumbItem className="hidden md:block">
-                    <Link to={webRoutes.dashboard}>
-                      <BreadcrumbLink>Home</BreadcrumbLink>
-                    </Link>
+                    <BreadcrumbLink asChild>
+                      <Link to={webRoutes.dashboard}>Home</Link>
+                    </BreadcrumbLink>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator className="hidden md:block" />
                   <BreadcrumbItem>

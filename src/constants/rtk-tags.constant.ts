@@ -1,7 +1,7 @@
 export const RTK_QUERY_TAG = {
-  user: 'User' as const
+  product: 'Product' as const
 }
 
 export const RTK_QUERY_TAGS_LIST = [
-  RTK_QUERY_TAG.user,
+  RTK_QUERY_TAG.product,
 ]

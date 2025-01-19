@@ -19,7 +19,7 @@ const DashboardPage = loadable(() => import('@/pages/dashboard.page'), {
   fallback: fallbackElement,
 });
 
-const UserListPage = loadable(() => import('@/pages/user-list.page'), {
+const ProductListPage = loadable(() => import('@/pages/products.page'), {
   fallback: fallbackElement,
 });
 
@@ -52,15 +52,8 @@ const protectedRoutes: RouteObject = {
       handle: { title: 'Dashboard' } as RouteHandle,
     },
     {
-      path: webRoutes.users,
-      element: <UserListPage />,
-      handle: {
-        title: 'Users',
-      } as RouteHandle,
-    },
-    {
       path: webRoutes.products,
-      element: <div>Products</div>,
+      element: <ProductListPage />,
       handle: {
         title: 'Products',
       } as RouteHandle,

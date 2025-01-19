@@ -33,7 +33,7 @@ import { useAppDispatch } from "@/hooks/redux.hook"
 import { clearToken } from "@/store/slices/token.slice"
 import { clearLoggedInUser } from "@/store/slices/logged-in-user.slice"
 import { LoggedInUser } from "@/interfaces/logged-in-user.interface"
-import { nameInitials } from "../../lib/utils"
+import { nameInitials } from "@/lib/utils"
 
 export function NavUser({
   user,

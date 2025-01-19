@@ -6,7 +6,6 @@ import {
   PieChart,
   Settings2,
   ShoppingCart,
-  UsersRound,
 } from 'lucide-react';
 
 import { NavMain } from '@/components/layout/nav-main.layout';
@@ -26,17 +25,6 @@ import { webRoutes } from '@/routes/web.route';
 
 const data = {
   navMain: [
-    {
-      title: 'Users',
-      url: '#',
-      icon: UsersRound,
-      items: [
-        {
-          title: 'All Users',
-          url: webRoutes.users,
-        },
-      ],
-    },
     {
       title: 'Products',
       url: '#',

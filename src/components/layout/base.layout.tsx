@@ -16,7 +16,7 @@ import {
 import { Link, Outlet, useMatches } from 'react-router-dom';
 import { RouteHandle } from '@/interfaces/route.interface';
 import PageTitle from '@/components/common/page-title.common';
-import { webRoutes } from '../../routes/web.route';
+import { webRoutes } from '@/routes/web.route';
 
 const BaseLayout: React.FC = () => {
   const matches = useMatches();

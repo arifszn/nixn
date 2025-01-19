@@ -20,18 +20,18 @@ export function TeamSwitcher() {
     <SidebarMenu>
       <SidebarMenuItem>
         <Link to={webRoutes.dashboard}>
-        <SidebarMenuButton
-          size="lg"
-          className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-        >
-          <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-            <Ratio className="size-4" />
-          </div>
-          <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-semibold">{APP_NAME}</span>
-            <span className="truncate text-xs">{currentTime}</span>
-          </div>
-        </SidebarMenuButton>
+          <SidebarMenuButton
+            size="lg"
+            className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+          >
+            <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+              <Ratio className="size-4" />
+            </div>
+            <div className="grid flex-1 text-left text-sm leading-tight">
+              <span className="truncate font-semibold">{APP_NAME}</span>
+              <span className="truncate text-xs">{currentTime}</span>
+            </div>
+          </SidebarMenuButton>
         </Link>
       </SidebarMenuItem>
     </SidebarMenu>

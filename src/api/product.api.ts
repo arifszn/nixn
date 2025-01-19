@@ -46,4 +46,8 @@ export const productApi = privateApi.injectEndpoints({
   }),
 });
 
-export const { useGetProductsQuery, useGetProductsByCategoryQuery, useGetProductsCategoryQuery } = productApi;
+export const {
+  useGetProductsQuery,
+  useGetProductsByCategoryQuery,
+  useGetProductsCategoryQuery,
+} = productApi;

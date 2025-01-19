@@ -12,16 +12,16 @@ const NotFoundPage: React.FC = () => {
       <div className="flex min-h-screen flex-col items-center justify-center bg-background">
         <div className="text-center">
           <div className="flex justify-center">
-          <TriangleAlert className="w-10 h-10 text-muted-foreground" />
+            <TriangleAlert className="w-10 h-10 text-muted-foreground" />
+          </div>
+          <p className="mt-4 text-muted-foreground">
+            Sorry, the page you visited does not exist.
+          </p>
+          <Button asChild className="mt-8">
+            <Link to={webRoutes.home}>Go back home</Link>
+          </Button>
         </div>
-        <p className="mt-4 text-muted-foreground">
-          Sorry, the page you visited does not exist.
-        </p>
-        <Button asChild className="mt-8">
-          <Link to={webRoutes.home}>Go back home</Link>
-        </Button>
       </div>
-    </div>
     </>
   );
 };

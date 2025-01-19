@@ -35,7 +35,7 @@ const baseQueryWithRefresh: typeof privateBaseQuery = async (
       refreshTokenPromise = (async () => {
         const state = api.getState() as RootState;
         const refreshToken = state.token.refreshToken;
-        
+
         if (!refreshToken) {
           api.dispatch(clearToken());
           throw new Error('No refresh token available');
@@ -57,7 +57,9 @@ const baseQueryWithRefresh: typeof privateBaseQuery = async (
               accessToken: string;
               refreshToken: string;
             };
-          api.dispatch(setToken({ accessToken, refreshToken: newRefreshToken }));
+          api.dispatch(
+            setToken({ accessToken, refreshToken: newRefreshToken }),
+          );
           return refreshResult.data;
         } else {
           api.dispatch(clearToken());

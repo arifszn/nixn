@@ -15,17 +15,19 @@ import { useSignupMutation } from '@/api/auth.api';
 import { Link, useNavigate } from 'react-router-dom';
 import { webRoutes } from '@/routes/web.route';
 
-const signupSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  username: z.string().min(3, 'Username must be at least 3 characters'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
-  confirmPassword: z
-    .string()
-    .min(6, 'Password confirmation must be at least 6 characters'),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: 'Passwords do not match',
-  path: ['confirmPassword'],
-});
+const signupSchema = z
+  .object({
+    name: z.string().min(1, 'Name is required'),
+    username: z.string().min(3, 'Username must be at least 3 characters'),
+    password: z.string().min(6, 'Password must be at least 6 characters'),
+    confirmPassword: z
+      .string()
+      .min(6, 'Password confirmation must be at least 6 characters'),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords do not match',
+    path: ['confirmPassword'],
+  });
 
 type SignupFormValues = z.infer<typeof signupSchema>;
 
@@ -57,7 +59,12 @@ const SignupForm: React.FC = () => {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input {...field} id="name" type="text" placeholder="Your Name" />
+                <Input
+                  {...field}
+                  id="name"
+                  type="text"
+                  placeholder="Your Name"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

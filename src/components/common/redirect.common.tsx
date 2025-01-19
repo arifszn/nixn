@@ -6,7 +6,10 @@ const Redirect: React.FC = () => {
   const { isAuthenticated } = useAuth();
 
   return (
-    <Navigate to={isAuthenticated ? webRoutes.dashboard : webRoutes.login} replace />
+    <Navigate
+      to={isAuthenticated ? webRoutes.dashboard : webRoutes.login}
+      replace
+    />
   );
 };
 

@@ -14,7 +14,10 @@ const initialState: LoggedInUser = {
 const updateUserFieldAsync = createAsyncThunk(
   'loggedInUser/updateFieldAsync',
   async (
-    { key, value }: { key: keyof LoggedInUser; value: LoggedInUser[keyof LoggedInUser] },
+    {
+      key,
+      value,
+    }: { key: keyof LoggedInUser; value: LoggedInUser[keyof LoggedInUser] },
     { dispatch },
   ) => {
     dispatch(updateField({ key, value }));
@@ -44,6 +47,7 @@ const loggedInUserSlice = createSlice({
 });
 
 export const selectLoggedInUser = (state: RootState) => state.loggedInUser;
-export const { setLoggedInUser, clearLoggedInUser, updateField } = loggedInUserSlice.actions;
+export const { setLoggedInUser, clearLoggedInUser, updateField } =
+  loggedInUserSlice.actions;
 export { updateUserFieldAsync };
 export default loggedInUserSlice.reducer;

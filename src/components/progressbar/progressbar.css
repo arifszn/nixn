@@ -22,7 +22,8 @@
   right: 0px;
   width: 100px;
   height: 100%;
-  box-shadow: 0 0 10px theme('colors.primary.DEFAULT'),
+  box-shadow:
+    0 0 10px theme('colors.primary.DEFAULT'),
     0 0 5px theme('colors.primary.DEFAULT');
   opacity: 1;
 

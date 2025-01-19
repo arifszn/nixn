@@ -27,7 +27,7 @@ const ProductsTable: FC = () => {
     dispatch(
       productApi.util.invalidateTags([
         { type: RTK_QUERY_TAG.product, id: 'LIST' },
-      ])
+      ]),
     );
   };
 

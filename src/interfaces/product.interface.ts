@@ -18,7 +18,6 @@ export interface ProductResponse {
   limit: number;
 }
 
-
 export type ProductCategoryResponse = ProductCategory[];
 
 export type ProductCategory = string;

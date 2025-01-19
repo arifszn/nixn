@@ -18,7 +18,7 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage: storage,
-  whitelist: ['loggedInUser', 'token']
+  whitelist: ['loggedInUser', 'token'],
 };
 
 const rootReducer = combineReducers({
@@ -38,7 +38,11 @@ export const makeStore = () => {
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
-      }).concat(publicApi.middleware, privateApi.middleware, rtkQueryErrorLogger),
+      }).concat(
+        publicApi.middleware,
+        privateApi.middleware,
+        rtkQueryErrorLogger,
+      ),
     devTools: process.env.NODE_ENV !== 'production',
   });
   setupListeners(store.dispatch);

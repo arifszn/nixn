@@ -72,7 +72,12 @@ const LoginForm: React.FC = () => {
                 </a>
               </div>
               <FormControl>
-                <Input {...field} id="password" type="password" placeholder="********" />
+                <Input
+                  {...field}
+                  id="password"
+                  type="password"
+                  placeholder="********"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

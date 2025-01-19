@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import ProductsTable from '@/components/tables/products.table';
-  
+
 const ProductsPage: FC = () => {
   return (
     <div className="container mx-auto px-4 py-6">

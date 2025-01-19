@@ -7,4 +7,3 @@ export const apiRoutes = {
   productCategory: 'auth/products/category-list',
   productByCategory: 'auth/products/category/:category',
 };
-

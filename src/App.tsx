@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="font-sans antialiased">
       <RouterProvider router={browserRouter} />
-      <Toaster/>
+      <Toaster />
     </div>
   );
 }

@@ -11,9 +11,10 @@ import enUSIntl from 'antd/locale/en_US';
 import { ActionButton } from '@/components/ui/action-button';
 import { productApi, useGetProductsCategoryQuery } from '@/api/product.api';
 import { useAppDispatch } from '@/hooks/redux.hook';
-import { Badge } from '../ui/badge';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Badge } from '@/components/ui/badge';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { DatabaseZap } from 'lucide-react';
+import { RTK_QUERY_TAG } from '@/constants/rtk-tags.constant';
 
 type SortOrder = 'descend' | 'ascend' | null;
 
@@ -21,6 +22,14 @@ const ProductsTable: FC = () => {
   const actionRef = useRef<ActionType>();
   const dispatch = useAppDispatch();
   const { data: productsCategory } = useGetProductsCategoryQuery({});
+
+  const invalidateTags = () => {
+    dispatch(
+      productApi.util.invalidateTags([
+        { type: RTK_QUERY_TAG.product, id: 'LIST' },
+      ])
+    );
+  };
 
   const fetchData = async (
     params: {
@@ -32,14 +41,14 @@ const ProductsTable: FC = () => {
     sort: Record<string, SortOrder>,
   ): Promise<RequestData<Product>> => {
     try {
+      // Invalidate the tags or otherwise refresh button will not work
+      invalidateTags();
       const {
         current = 1,
         pageSize = 10,
         keyword = '',
         category = '',
       } = params;
-      console.log(keyword);
-
       const order = sort[Object.keys(sort)[0]];
       let data;
       let error;
@@ -237,7 +246,7 @@ const ProductsTable: FC = () => {
         actionRef={actionRef}
         dateFormatter="string"
         search={{
-          filterType: 'query',
+          filterType: 'light',
           searchText: 'Filter',
         }}
         rowKey="id"

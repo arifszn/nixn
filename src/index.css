@@ -81,9 +81,9 @@
   }
 }
 
-:where(.css-dev-only-do-not-override-jyi68z).ant-table-wrapper
+.ant-table-wrapper
   .ant-table-tbody
   .ant-table-row.ant-table-row-selected
   > .ant-table-cell {
-  background-color: theme('colors.card.DEFAULT');
+  background-color: theme('colors.primary.DEFAULT'/0.1);
 }

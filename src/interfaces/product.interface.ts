@@ -3,8 +3,12 @@ export interface Product {
   title: string;
   price: number;
   description: string;
-  category: string;
+  category: ProductCategory;
   thumbnail: string;
+  tags: string[];
+  rating: number;
+  availabilityStatus: string;
+  stock: number;
 }
 
 export interface ProductResponse {
@@ -13,3 +17,8 @@ export interface ProductResponse {
   skip: number;
   limit: number;
 }
+
+
+export type ProductCategoryResponse = ProductCategory[];
+
+export type ProductCategory = string;

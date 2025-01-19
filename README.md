@@ -1,50 +1,74 @@
-# React + TypeScript + Vite
+<br/>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  
+  <h1 align="center">
+    Nixn
+  </h1>
+  <h4 align="center">An out-of-box UI solution for enterprise applications as a React boilerplate.</h4>
 
-Currently, two official plugins are available:
+  <p align="center">
+    <a href="https://nixn.netlify.app"><b>Demo</b></a>
+    ·
+    <a href="https://github.com/arifszn/nixn/issues"><b>Report Bug</b></a>
+    ·
+    <a href="https://github.com/arifszn/nixn/discussions/categories/ideas"><b>Request Feature</b></a>
+  </p>
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Elegant and customizable UI using `Tailwindcss` and `Shadcn`.
+- Single page application using `React Router`.
+- Redux Toolkit and RTK Query enabled.
+- Authentication and Authorization.
+- Powerful table component.
+- Code splitting and lazy loading component.
+- `ESLint` and `Prettier`.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Demo
 
-- Configure the top-level `parserOptions` property like this:
+https://nixn.netlify.app
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Credentials
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **User:** `jamesd`
+- **Password:** `jamesdpass`
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Usage
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Clone the project and change directory.
+
+  ```shell
+  git clone https://github.com/arifszn/nixn.git
+  cd nixn
+  ```
+
+- Install dependencies.
+
+  ```shell
+  npm install
+  ```
+
+- Run dev server.
+
+  ```shell
+  npm run dev
+  ```
+
+- Finally, visit [`http://localhost:5173`](http://localhost:5173) from your browser. Credentials can be found above.
+
+## Support
+
+<p>You can show your support by starring this project. ★</p>
+<a href="https://github.com/arifszn/nixn/stargazers">
+  <img src="https://img.shields.io/github/stars/arifszn/nixn?style=social" alt="Github Star">
+</a>
+
+## Contribute
+
+To contribute, see the [Contributing guide](https://github.com/arifszn/nixn/blob/main/CONTRIBUTING.md).
+
+## License
+
+[MIT](https://github.com/arifszn/nixn/blob/main/LICENSE)

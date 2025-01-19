@@ -46,32 +46,32 @@ const ProductActions = ({
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-auto">
         <DropdownMenuItem
-          className="cursor-pointer"
+          className="cursor-pointer text-xs"
           onClick={() => onView(row)}
         >
-          <Eye className="mr-2 h-4 w-4" />
+          <Eye className="mr-2 h-3 w-3" />
           View
         </DropdownMenuItem>
         <DropdownMenuItem
-          className="cursor-pointer"
+          className="cursor-pointer text-xs"
           onClick={() => onEdit(row)}
         >
-          <Pencil className="mr-2 h-4 w-4" />
+          <Pencil className="mr-2 h-3 w-3" />
           Edit
         </DropdownMenuItem>
         <DropdownMenuItem
-          className="cursor-pointer"
+          className="cursor-pointer text-xs"
           onClick={() => onDelete(row)}
         >
-          <Trash className="mr-2 h-4 w-4 text-destructive" />
+          <Trash className="mr-2 h-3 w-3 text-destructive" />
           Delete
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
-          className="cursor-pointer"
+          className="cursor-pointer text-xs"
           onClick={() => onArchive(row)}
         >
-          <Archive className="mr-2 h-4 w-4" />
+          <Archive className="mr-2 h-3 w-3" />
           Archive
         </DropdownMenuItem>
       </DropdownMenuContent>

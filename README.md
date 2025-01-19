@@ -5,7 +5,7 @@
   <h1 align="center">
     Nixn
   </h1>
-  <h4 align="center">An out-of-box UI solution for enterprise applications as a React boilerplate.</h4>
+  <h4 align="center">Modern and responsive admin dashboard built with React, Tailwind, and Shadcn.</h4>
 
   <p align="center">
     <a href="https://nixn.netlify.app"><b>Demo</b></a>
@@ -32,7 +32,7 @@ https://nixn.netlify.app
 
 ### Credentials
 
-- **User:** `jamesd`
+- **Username:** `jamesd`
 - **Password:** `jamesdpass`
 
 ## Usage

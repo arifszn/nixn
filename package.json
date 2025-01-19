@@ -1,5 +1,6 @@
 {
   "name": "nixn",
+  "description": "Modern and responsive admin dashboard built with React, Tailwind, and Shadcn.",
   "private": true,
   "version": "0.0.0",
   "type": "module",

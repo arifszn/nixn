@@ -1,5 +1,12 @@
 import { FC, useRef } from 'react';
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import {
   ActionType,
   ProTable,
   ProColumns,
@@ -13,10 +20,77 @@ import { productApi, useGetProductsCategoryQuery } from '@/api/product.api';
 import { useAppDispatch } from '@/hooks/redux.hook';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { DatabaseZap } from 'lucide-react';
+import {
+  Archive,
+  DatabaseZap,
+  Ellipsis,
+  Eye,
+  Pencil,
+  Trash,
+} from 'lucide-react';
 import { RTK_QUERY_TAG } from '@/constants/rtk-tags.constant';
+import { Button } from '../ui/button';
 
 type SortOrder = 'descend' | 'ascend' | null;
+
+const ProductActions = ({
+  row,
+  onView,
+  onEdit,
+  onDelete,
+  onArchive,
+}: {
+  row: Product;
+  onView: (row: Product) => void;
+  onEdit: (row: Product) => void;
+  onDelete: (row: Product) => void;
+  onArchive: (row: Product) => void;
+}) => {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          aria-label="Open menu"
+          variant="ghost"
+          className="size-8 p-0 data-[state=open]:bg-muted"
+        >
+          <Ellipsis className="size-4" aria-hidden="true" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-auto">
+        <DropdownMenuItem
+          className="cursor-pointer"
+          onClick={() => onView(row)}
+        >
+          <Eye className="mr-2 h-4 w-4" />
+          View
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          className="cursor-pointer"
+          onClick={() => onEdit(row)}
+        >
+          <Pencil className="mr-2 h-4 w-4" />
+          Edit
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          className="cursor-pointer"
+          onClick={() => onDelete(row)}
+        >
+          <Trash className="mr-2 h-4 w-4 text-destructive" />
+          Delete
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem
+          className="cursor-pointer"
+          onClick={() => onArchive(row)}
+        >
+          <Archive className="mr-2 h-4 w-4" />
+          Archive
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
 
 const ProductsTable: FC = () => {
   const actionRef = useRef<ActionType>();
@@ -102,9 +176,10 @@ const ProductsTable: FC = () => {
     {
       title: 'Title',
       dataIndex: 'title',
-      align: 'center',
+      align: 'left',
       sorter: false,
       search: false,
+      width: 300,
       render: (_, record: Product) => (
         <div className="flex items-center gap-2">
           <Avatar className="bg-gray-100 h-8 w-8">
@@ -188,6 +263,31 @@ const ProductsTable: FC = () => {
           {record.availabilityStatus}
         </Badge>
       ),
+    },
+    {
+      title: 'Action',
+      align: 'center',
+      key: 'option',
+      fixed: 'right',
+      width: 100,
+      render: (_, row: Product) => [
+        <ProductActions
+          key={`actions-${row.id}`}
+          row={row}
+          onView={(product) => {
+            console.log('View product:', product);
+          }}
+          onEdit={(product) => {
+            console.log('Edit product:', product);
+          }}
+          onDelete={(product) => {
+            console.log('Delete product:', product);
+          }}
+          onArchive={(product) => {
+            console.log('Archive product:', product);
+          }}
+        />,
+      ],
     },
   ];
 

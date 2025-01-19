@@ -23,7 +23,7 @@ const ProductsTable: FC = () => {
   const dispatch = useAppDispatch();
   const { data: productsCategory } = useGetProductsCategoryQuery({});
 
-  const invalidateTags = () => {
+  const invalidateProductTags = () => {
     dispatch(
       productApi.util.invalidateTags([
         { type: RTK_QUERY_TAG.product, id: 'LIST' },
@@ -41,8 +41,6 @@ const ProductsTable: FC = () => {
     sort: Record<string, SortOrder>,
   ): Promise<RequestData<Product>> => {
     try {
-      // Invalidate the tags or otherwise refresh button will not work
-      invalidateTags();
       const {
         current = 1,
         pageSize = 10,
@@ -253,6 +251,10 @@ const ProductsTable: FC = () => {
         options={{
           search: {
             placeholder: 'Search',
+          },
+          reload: () => {
+            invalidateProductTags();
+            actionRef.current?.reload();
           },
         }}
         locale={{

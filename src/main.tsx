@@ -20,3 +20,7 @@ createRoot(document.getElementById('root')!).render(
     </Provider>
   </StrictMode>,
 )
+
+window?.addEventListener('vite:preloadError', () => {
+  window?.location?.reload();
+});

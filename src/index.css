@@ -80,3 +80,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+:where(.css-dev-only-do-not-override-jyi68z).ant-table-wrapper
+  .ant-table-tbody
+  .ant-table-row.ant-table-row-selected
+  > .ant-table-cell {
+  background-color: theme('colors.card.DEFAULT');
+}

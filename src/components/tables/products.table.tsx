@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react';
+import { FC } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -6,30 +6,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import {
-  ActionType,
-  ProTable,
-  ProColumns,
-  RequestData,
-} from '@ant-design/pro-components';
+
 import { Product, ProductCategory } from '@/interfaces/product.interface';
-import { ConfigProvider } from 'antd';
-import enUSIntl from 'antd/locale/en_US';
 import { ActionButton } from '@/components/ui/action-button';
 import { productApi, useGetProductsCategoryQuery } from '@/api/product.api';
 import { useAppDispatch } from '@/hooks/redux.hook';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import {
-  Archive,
-  DatabaseZap,
-  Ellipsis,
-  Eye,
-  Pencil,
-  Trash,
-} from 'lucide-react';
+import { Archive, Ellipsis, Eye, Pencil, Trash } from 'lucide-react';
 import { RTK_QUERY_TAG } from '@/constants/rtk-tags.constant';
 import { Button } from '../ui/button';
+import DataTable, { DataTableProps } from '../data-table';
 
 type SortOrder = 'descend' | 'ascend' | null;
 
@@ -93,7 +80,6 @@ const ProductActions = ({
 };
 
 const ProductsTable: FC = () => {
-  const actionRef = useRef<ActionType>();
   const dispatch = useAppDispatch();
   const { data: productsCategory } = useGetProductsCategoryQuery({});
 
@@ -105,7 +91,7 @@ const ProductsTable: FC = () => {
     );
   };
 
-  const fetchData = async (
+  const fetchData: DataTableProps<Product>['fetchData'] = async (
     params: {
       pageSize?: number;
       current?: number;
@@ -113,7 +99,7 @@ const ProductsTable: FC = () => {
       category?: string;
     },
     sort: Record<string, SortOrder>,
-  ): Promise<RequestData<Product>> => {
+  ) => {
     try {
       const {
         current = 1,
@@ -122,33 +108,23 @@ const ProductsTable: FC = () => {
         category = '',
       } = params;
       const order = sort[Object.keys(sort)[0]];
-      let data;
-      let error;
-      if (!category) {
-        const { data: products, error: productsError } = await dispatch(
-          productApi.endpoints.getProducts.initiate({
-            limit: pageSize,
-            skip: (current - 1) * pageSize,
-            search: keyword,
-            sortBy: Object.keys(sort)[0],
-            order: order ? (order === 'descend' ? 'desc' : 'asc') : undefined,
-          }),
-        );
-        data = products;
-        error = productsError;
-      } else {
-        const { data: products, error: productsError } = await dispatch(
-          productApi.endpoints.getProductsByCategory.initiate({
-            limit: pageSize,
-            skip: (current - 1) * pageSize,
-            sortBy: Object.keys(sort)[0],
-            order: order ? (order === 'descend' ? 'desc' : 'asc') : undefined,
-            category,
-          }),
-        );
-        data = products;
-        error = productsError;
-      }
+      const { data, error } = await dispatch(
+        category
+          ? productApi.endpoints.getProductsByCategory.initiate({
+              limit: pageSize,
+              skip: (current - 1) * pageSize,
+              sortBy: Object.keys(sort)[0],
+              order: order === 'descend' ? 'desc' : 'asc',
+              category,
+            })
+          : productApi.endpoints.getProducts.initiate({
+              limit: pageSize,
+              skip: (current - 1) * pageSize,
+              search: keyword,
+              sortBy: Object.keys(sort)[0],
+              order: order === 'descend' ? 'desc' : 'asc',
+            }),
+      );
 
       if (error) {
         throw error;
@@ -158,14 +134,14 @@ const ProductsTable: FC = () => {
         data: data?.data || [],
         total: data?.total || 0,
         success: true,
-      } as RequestData<Product>;
+      };
     } catch (error) {
       console.log(error);
-      return { data: [], total: 0, success: false } as RequestData<Product>;
+      return { data: [], total: 0, success: false };
     }
   };
 
-  const columns: ProColumns[] = [
+  const columns: DataTableProps<Product>['columns'] = [
     {
       title: 'ID',
       dataIndex: 'id',
@@ -258,117 +234,57 @@ const ProductsTable: FC = () => {
           variant={
             record.availabilityStatus !== 'In Stock' ? 'destructive' : undefined
           }
-          className="font-mono font-light"
+          className="font-mono font-light text-xs"
         >
           {record.availabilityStatus}
         </Badge>
       ),
     },
-    {
-      title: 'Action',
-      align: 'center',
-      key: 'option',
-      fixed: 'right',
-      width: 100,
-      render: (_, row: Product) => [
-        <ProductActions
-          key={`actions-${row.id}`}
-          row={row}
-          onView={(product) => {
-            console.log('View product:', product);
-          }}
-          onEdit={(product) => {
-            console.log('Edit product:', product);
-          }}
-          onDelete={(product) => {
-            console.log('Delete product:', product);
-          }}
-          onArchive={(product) => {
-            console.log('Archive product:', product);
-          }}
-        />,
-      ],
-    },
   ];
 
-  return (
-    <ConfigProvider
-      locale={enUSIntl}
-      theme={{
-        token: { colorPrimary: 'var(--primary-color)' },
-      }}
-    >
-      <ProTable
-        columns={columns}
-        request={fetchData}
-        cardBordered={false}
-        cardProps={false}
-        bordered={true}
-        showSorterTooltip={false}
-        scroll={{ x: true }}
-        tableLayout={'fixed'}
-        rowSelection={{}}
-        tableAlertRender={({ selectedRowKeys, onCleanSelected }) => (
-          <div>
-            <span>
-              Selected {selectedRowKeys.length} items
-              <a
-                style={{
-                  marginLeft: 8,
-                }}
-                onClick={onCleanSelected}
-              >
-                <strong>Cancel Selection</strong>
-              </a>
-            </span>
-          </div>
-        )}
-        tableAlertOptionRender={({ selectedRows }) => (
-          <div>
-            <ActionButton onClick={() => console.log(selectedRows)}>
-              Batch Deletion
-            </ActionButton>
-          </div>
-        )}
-        pagination={{
-          showQuickJumper: true,
-          defaultPageSize: 20,
+  const actions = (row: Product) => {
+    return (
+      <ProductActions
+        key={`actions-${row.id}`}
+        row={row}
+        onView={(product) => {
+          console.log('View product:', product);
         }}
-        expandable={{
-          expandedRowRender: (record: Product) => (
-            <div className="p-4 bg-white shadow rounded-lg">
-              {record.description}
-            </div>
-          ),
+        onEdit={(product) => {
+          console.log('Edit product:', product);
         }}
-        actionRef={actionRef}
-        dateFormatter="string"
-        search={{
-          filterType: 'light',
-          searchText: 'Filter',
+        onDelete={(product) => {
+          console.log('Delete product:', product);
         }}
-        rowKey="id"
-        options={{
-          search: {
-            placeholder: 'Search',
-          },
-          reload: () => {
-            invalidateProductTags();
-            actionRef.current?.reload();
-          },
-        }}
-        locale={{
-          emptyText: (
-            <div className="flex justify-center items-center h-64">
-              <div className="text-center text-primary/80">
-                <DatabaseZap className="mx-auto text-4xl" />
-                <p className="mt-2">No Results found</p>
-              </div>
-            </div>
-          ),
+        onArchive={(product) => {
+          console.log('Archive product:', product);
         }}
       />
-    </ConfigProvider>
+    );
+  };
+
+  return (
+    <DataTable
+      columns={columns}
+      actions={actions}
+      fetchData={fetchData}
+      rowKey="id"
+      reloadCallback={invalidateProductTags}
+      filterType="light"
+      defaultPageSize={20}
+      tableAlertOptionRender={({ selectedRows }) => (
+        <div>
+          <ActionButton onClick={() => console.log(selectedRows)}>
+            Batch Deletion
+          </ActionButton>
+        </div>
+      )}
+      expandedRowRender={(record) => (
+        <div className="p-4 bg-white shadow rounded-lg">
+          {record.description}
+        </div>
+      )}
+    />
   );
 };
 

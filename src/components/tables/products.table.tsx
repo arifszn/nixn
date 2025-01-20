@@ -3,7 +3,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
@@ -13,25 +12,21 @@ import { productApi, useGetProductsCategoryQuery } from '@/api/product.api';
 import { useAppDispatch } from '@/hooks/redux.hook';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Archive, Ellipsis, Eye, Pencil, Trash } from 'lucide-react';
+import { Ellipsis, Eye } from 'lucide-react';
 import { RTK_QUERY_TAG } from '@/constants/rtk-tags.constant';
-import { Button } from '../ui/button';
-import DataTable, { DataTableProps } from '../data-table';
+import { Button } from '@/components/ui/button';
+import DataTable, { DataTableProps } from '@/components/data-table';
+import { useNavigate } from 'react-router-dom';
+import { webRoutes } from '@/routes/web.route';
 
 type SortOrder = 'descend' | 'ascend' | null;
 
 const ProductActions = ({
   row,
   onView,
-  onEdit,
-  onDelete,
-  onArchive,
 }: {
   row: Product;
   onView: (row: Product) => void;
-  onEdit: (row: Product) => void;
-  onDelete: (row: Product) => void;
-  onArchive: (row: Product) => void;
 }) => {
   return (
     <DropdownMenu>
@@ -52,28 +47,6 @@ const ProductActions = ({
           <Eye className="mr-2 h-3 w-3" />
           View
         </DropdownMenuItem>
-        <DropdownMenuItem
-          className="cursor-pointer text-xs"
-          onClick={() => onEdit(row)}
-        >
-          <Pencil className="mr-2 h-3 w-3" />
-          Edit
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          className="cursor-pointer text-xs"
-          onClick={() => onDelete(row)}
-        >
-          <Trash className="mr-2 h-3 w-3 text-destructive" />
-          Delete
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem
-          className="cursor-pointer text-xs"
-          onClick={() => onArchive(row)}
-        >
-          <Archive className="mr-2 h-3 w-3" />
-          Archive
-        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
@@ -81,6 +54,7 @@ const ProductActions = ({
 
 const ProductsTable: FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { data: productsCategory } = useGetProductsCategoryQuery({});
 
   const invalidateProductTags = () => {
@@ -248,16 +222,9 @@ const ProductsTable: FC = () => {
         key={`actions-${row.id}`}
         row={row}
         onView={(product) => {
-          console.log('View product:', product);
-        }}
-        onEdit={(product) => {
-          console.log('Edit product:', product);
-        }}
-        onDelete={(product) => {
-          console.log('Delete product:', product);
-        }}
-        onArchive={(product) => {
-          console.log('Archive product:', product);
+          navigate(
+            webRoutes.productDetails.replace(':id', product.id.toString()),
+          );
         }}
       />
     );

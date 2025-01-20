@@ -5,4 +5,5 @@ export const webRoutes = {
   logout: '/logout',
   dashboard: '/dashboard',
   products: '/products',
+  productDetails: '/products/:id',
 };

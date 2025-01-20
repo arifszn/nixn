@@ -17,7 +17,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from '@/components/ui/sidebar';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, matchPath, useLocation } from 'react-router-dom';
 
 export function NavMain({
   items,
@@ -42,8 +42,8 @@ export function NavMain({
           <Collapsible
             key={item.title}
             asChild
-            defaultOpen={item?.items?.some(
-              (item) => item.url === location.pathname,
+            defaultOpen={item?.items?.some((subItem) =>
+              matchPath({ path: subItem.url, end: false }, location.pathname),
             )}
             className="group/collapsible"
           >

@@ -19,13 +19,19 @@ const DashboardPage = loadable(() => import('@/pages/dashboard.page'), {
   fallback: fallbackElement,
 });
 
-const ProductListPage = loadable(() => import('@/pages/products/products.page'), {
-  fallback: fallbackElement,
-});
+const ProductListPage = loadable(
+  () => import('@/pages/products/products.page'),
+  {
+    fallback: fallbackElement,
+  },
+);
 
-const ViewProductPage = loadable(() => import('@/pages/products/view-product.page'), {
-  fallback: fallbackElement,
-});
+const ViewProductPage = loadable(
+  () => import('@/pages/products/view-product.page'),
+  {
+    fallback: fallbackElement,
+  },
+);
 
 const authRoutes: RouteObject = {
   element: <AuthLayout />,

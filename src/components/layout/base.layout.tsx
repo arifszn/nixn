@@ -4,7 +4,6 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { Separator } from '@/components/ui/separator';
@@ -16,7 +15,7 @@ import {
 import { Link, Outlet, useMatches } from 'react-router-dom';
 import { RouteHandle } from '@/interfaces/route.interface';
 import PageTitle from '@/components/common/page-title.common';
-import { webRoutes } from '@/routes/web.route';
+import { Fragment } from 'react/jsx-runtime';
 
 const BaseLayout: React.FC = () => {
   const matches = useMatches();
@@ -35,15 +34,26 @@ const BaseLayout: React.FC = () => {
               <Separator orientation="vertical" className="mr-2 h-4" />
               <Breadcrumb>
                 <BreadcrumbList>
-                  <BreadcrumbItem className="hidden md:block">
-                    <BreadcrumbLink asChild>
-                      <Link to={webRoutes.dashboard}>Home</Link>
-                    </BreadcrumbLink>
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator className="hidden md:block" />
-                  <BreadcrumbItem>
-                    <BreadcrumbPage>{routeHandle.title}</BreadcrumbPage>
-                  </BreadcrumbItem>
+                  {routeHandle.breadcrumb?.map((item, index) => (
+                    <Fragment key={item.title}>
+                      <BreadcrumbItem
+                        className={index === 0 ? 'hidden md:block' : ''}
+                      >
+                        {item.url ? (
+                          <BreadcrumbLink asChild>
+                            <Link to={item.url}>{item.title}</Link>
+                          </BreadcrumbLink>
+                        ) : (
+                          item.title
+                        )}
+                      </BreadcrumbItem>
+                      {index < routeHandle.breadcrumb.length - 1 && (
+                        <BreadcrumbSeparator
+                          className={index === 0 ? 'hidden md:block' : ''}
+                        />
+                      )}
+                    </Fragment>
+                  ))}
                 </BreadcrumbList>
               </Breadcrumb>
             </div>

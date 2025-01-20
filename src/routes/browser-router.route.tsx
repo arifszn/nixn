@@ -19,7 +19,11 @@ const DashboardPage = loadable(() => import('@/pages/dashboard.page'), {
   fallback: fallbackElement,
 });
 
-const ProductListPage = loadable(() => import('@/pages/products.page'), {
+const ProductListPage = loadable(() => import('@/pages/products/products.page'), {
+  fallback: fallbackElement,
+});
+
+const ViewProductPage = loadable(() => import('@/pages/products/view-product.page'), {
   fallback: fallbackElement,
 });
 
@@ -49,13 +53,51 @@ const protectedRoutes: RouteObject = {
     {
       path: webRoutes.dashboard,
       element: <DashboardPage />,
-      handle: { title: 'Dashboard' } as RouteHandle,
+      handle: {
+        title: 'Dashboard',
+        breadcrumb: [
+          {
+            title: 'Dashboard',
+            url: webRoutes.dashboard,
+          },
+        ],
+      } as RouteHandle,
     },
     {
       path: webRoutes.products,
       element: <ProductListPage />,
       handle: {
         title: 'Products',
+        breadcrumb: [
+          {
+            title: 'Dashboard',
+            url: webRoutes.dashboard,
+          },
+          {
+            title: 'Products',
+            url: webRoutes.products,
+          },
+        ],
+      } as RouteHandle,
+    },
+    {
+      path: webRoutes.productDetails,
+      element: <ViewProductPage />,
+      handle: {
+        title: 'Product Details',
+        breadcrumb: [
+          {
+            title: 'Dashboard',
+            url: webRoutes.dashboard,
+          },
+          {
+            title: 'Products',
+            url: webRoutes.products,
+          },
+          {
+            title: 'Product Details',
+          },
+        ],
       } as RouteHandle,
     },
   ],

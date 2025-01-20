@@ -118,7 +118,7 @@ const ProductDetails = ({ productId }: { productId: number }) => {
                   ${product.price.toFixed(2)}
                 </span>
                 {product.discountPercentage > 0 && (
-                  <Badge className="ml-2">
+                  <Badge className="ml-2" variant="outline">
                     {product.discountPercentage}% OFF
                   </Badge>
                 )}

@@ -11,7 +11,7 @@ const NotFound = ({
 }) => {
   return (
     <div className="absolute inset-0 flex items-center justify-center">
-      <div className="text-center">
+      <div className="text-center px-16 max-w-md">
         <div className="flex justify-center">
           <div className="mx-auto mb-4 bg-muted rounded-full w-16 h-16 flex items-center justify-center">
             <PackageX className="h-8 w-8 text-muted-foreground" />

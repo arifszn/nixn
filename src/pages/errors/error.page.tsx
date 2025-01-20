@@ -10,7 +10,7 @@ const ErrorPage: React.FC = () => {
     <>
       <PageTitle title={`${APP_NAME} | Error`} />
       <div className="flex min-h-screen flex-col items-center justify-center bg-background">
-        <div className="text-center">
+        <div className="text-center px-16 max-w-md">
           <div className="flex justify-center">
             <div className="mx-auto mb-4 bg-muted rounded-full w-16 h-16 flex items-center justify-center">
               <ServerCrash className="h-8 w-8 text-muted-foreground" />

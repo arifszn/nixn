@@ -16,6 +16,19 @@
   </p>
 </p>
 
+<p align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="https://github.com/user-attachments/assets/01b31b51-8ea4-4d32-8645-b44ddb0dffad" alt="Dashboard Light Mode" width="600px" />
+      </td>
+      <td align="center">
+        <img src="https://github.com/user-attachments/assets/0c495950-0dd9-4f0a-a0d5-fa1baefde597" alt="Dashboard Dark Mode" width="600px" />
+      </td>
+    </tr>
+  </table>
+</p>
+
 ## Features
 
 - Elegant and customizable UI using `Tailwindcss` and `Shadcn`.
